@@ -48,7 +48,7 @@ MAKE_FLAGS += \
 	NDPI_PATH=$(PKG_BUILD_DIR)/ndpi-netfilter
 
 define Build/Compile
-	(cd $(PKG_BUILD_DIR)/src/lib &&\
+	(cd $(PKG_BUILD_DIR)/src/lib && ln -s /workdir/openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/linux-4.14.206/arch/mips/ /workdir/openwrt/build_dir/target-mipsel_24kc_musl/linux-ramips_mt7620/linux-4.14.206/arch/mipsel &&\
 		gcc -g -O2 -fPIC -DPIC -DNDPI_LIB_COMPILATION -I../../src/include/ -I../../src/lib/third_party/include/ ndpi_network_list_compile.c -o ndpi_network_list_compile &&\
 		./ndpi_network_list_compile -o ndpi_network_list.c.inc ndpi_network_list_std.yaml ndpi_network_list_tor.yaml)
 	make $(MAKE_FLAGS) -C $(PKG_BUILD_DIR)/ndpi-netfilter
